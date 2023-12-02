@@ -1,20 +1,32 @@
-import React from "react";
-import styled from "styled-components";
+import React, { useContext } from "react";
+import FilterSection from "./components/FilterSection";
+import Sort from "./components/Sort";
+import ProductList from "./components/ProductList";
+import { FilterContext } from "./context/FilterContext";
 
 const Products = () => {
-  return <Wrapper></Wrapper>;
+  const { filter_products } = useContext(FilterContext);
+  // console.log(filter_products)
+  return (
+    <div className="w-[80%] m-auto mt-8">
+      <div className="flex">
+        <div className="bg-gray-200 mr-4">
+          <FilterSection />
+        </div>
+        <div className="flex flex-col gap-5">
+          
+          <Sort /> <ProductList filterProducts={filter_products} />
+        </div>
+      </div>
+    </div>
+  );
 };
-
-const Wrapper = styled.section`
-  .grid-filter-column {
-    grid-template-columns: 0.2fr 1fr;
-  }
-
-  @media (max-width: ${({ theme }) => theme.media.mobile}) {
-    .grid-filter-column {
-      grid-template-columns: 1fr;
-    }
-  }
-`;
-
+{
+  /* <div className='w-[80%] m-auto mt-8'>
+<div className='grid grid-cols-6 gap-[20px]'>
+ <div className='col-span-1 bg-gray-200 mr-4'> <FilterSection /> </div>                          
+ <div className='grid col-span-5 gap-5'> <Sort /> <ProductList filterProducts = {filter_products}/> </div>                          
+</div>
+</div> */
+}
 export default Products;

@@ -1,78 +1,111 @@
-import styled from "styled-components";
+import React, { useContext } from "react";
+import { useEffect } from "react";
+import { useParams } from "react-router-dom";
+import { AppContext } from "./context/ProductContext";
+import PageNavigation from "./components/PageNavigation";
+import ProductImage from "./components/ProductImage";
+import IndianPrice from "./Helper/IndianPrice";
+import { TbTruckDelivery, TbReplace } from "react-icons/tb";
+import { RiSecurePaymentLine } from "react-icons/ri";
+import Stars from "./components/Stars";
+import Colors from "./components/Colors";
+import QtySelect from "./components/QtySelect";
+import { NavLink } from "react-router-dom";
 
-return <Wrapper></Wrapper>;
+const singleUrl = `https://api.pujakaitem.com/api/products`;
 
-const Wrapper = styled.section`
-  .container {
-    padding: 9rem 0;
-  }
-  .product-data {
-    display: flex;
-    flex-direction: column;
-    align-items: flex-start;
-    justify-content: center;
-    gap: 2rem;
+const SingleProduct = () => {
+  const { id } = useParams();
+  // console.log(id)
+  const { getSingleProducts, isLoading, singleProduct } =
+    useContext(AppContext);
+  // console.log(singleProduct)
 
-    .product-data-warranty {
-      width: 100%;
-      display: flex;
-      justify-content: space-between;
-      align-items: center;
-      border-bottom: 1px solid #ccc;
-      margin-bottom: 1rem;
+  const {
+    name,
+    id: alias,
+    company,
+    price,
+    description,
+    stock,
+    reviews,
+    stars,
+    image,
+    colors
+  } = singleProduct;
+  useEffect(() => {
+    getSingleProducts(`${singleUrl}?id=${id}`);
+  }, []);
 
-      .product-warranty-data {
-        text-align: center;
-
-        .warranty-icon {
-          background-color: rgba(220, 220, 220, 0.5);
-          border-radius: 50%;
-          width: 4rem;
-          height: 4rem;
-          padding: 0.6rem;
-        }
-        p {
-          font-size: 1.4rem;
-          padding-top: 0.4rem;
-        }
-      }
-    }
-
-    .product-data-price {
-      font-weight: bold;
-    }
-    .product-data-real-price {
-      color: ${({ theme }) => theme.colors.btn};
-    }
-    .product-data-info {
-      display: flex;
-      flex-direction: column;
-      gap: 1rem;
-      font-size: 1.8rem;
-
-      span {
-        font-weight: bold;
-      }
-    }
-
-    hr {
-      max-width: 100%;
-      width: 90%;
-      /* height: 0.2rem; */
-      border: 0.1rem solid #000;
-      color: red;
-    }
+  if(isLoading){
+    return <div>... Loading</div>
   }
 
-  .product-images {
-    display: flex;
-    justify-content: center;
-    align-items: center;
-  }
+  return (
+    <>
+      <div className="bg-[rgb(211,211,211)] capitalize text-2xl py-2 px-3">
+      {/* Page Navigation */}
+        <PageNavigation /> / {name}
+      </div>
 
-  @media (max-width: ${({ theme }) => theme.media.mobile}) {
-    padding: 0 2.4rem;
-  }
-`;
+      <div className="grid grid-cols-2 my-9 w-[70%] m-auto gap-8">
+      {/* Image */}
+        <ProductImage img={image} />
+        {/* About product */}
+        <div className="text-[16px]  flex flex-col gap-3">
+          <h2 className="text-3xl">{name}</h2>
+          <Stars stars={stars} reviews={reviews} />
+          <p>
+            <b>
+              MRP :
+              <del>
+                <IndianPrice price={price + 250000} />
+              </del>
+            </b>
+          </p>
+          <p className="text-blue-800 text-bold">
+            <b>
+              Deal of the Day : <IndianPrice price={price} />
+            </b>
+          </p>
+          <p>{description}</p>
+          <div className="grid grid-cols-4 gap-3 ">
+            <div className="flex items-center text-center gap-2 flex-col">
+              <TbTruckDelivery /> <p>Free Delivery</p>
+            </div>
+            <div className="flex items-center text-center gap-2 flex-col">
+              <TbReplace /> 30 Days Replacement
+            </div>
+            <div className="flex items-center text-center gap-2 flex-col">
+              <TbTruckDelivery /> <p>Contact Free Delivery</p>
+            </div>
+            <div className="flex items-center text-center gap-2 flex-col">
+              <RiSecurePaymentLine />
+              <p>2 Years Warranty</p>
+            </div>
+          </div>
+          <p>
+            Available : <b>{stock > 0 ? "In Stock" : "Out of Stock"}</b>
+          </p>
+          <p>
+            id : <b>{id}</b>
+          </p>
+          <p>
+            Brand : <b>{company}</b>
+          </p>
+          <hr />
+        {/* Colors Selection */}
+        <p className="flex items-center gap-3 ">Color Available : {stock > 0 ? <Colors color = {colors}/> : "Stock not Available"}  </p>
+        {/* Qty Selection */}
+        <QtySelect qty = {stock}/>
+        {/* Add to Cart Button */}
+        <NavLink to="/cart">
+        <button className="bg-[#3273dc] px-3 py-2 text-white">Add to Cart</button>
+        </NavLink>
+        </div>
+      </div>
+    </>
+  );
+};
 
 export default SingleProduct;
