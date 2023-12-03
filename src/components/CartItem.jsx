@@ -3,21 +3,13 @@ import IndianPrice from "../Helper/IndianPrice";
 import { FaPlus, FaMinus, FaTrash } from "react-icons/fa";
 import { CartContext } from "../context/CartContext";
 
-const CartItem = ({ id,image, name, clickColor, selectQty, price, stock }) => {
+const CartItem = ({ id,image, name, clickColor, selectQty, price }) => {
 
-    const {removeItem} = useContext(CartContext);
-    
-  const qtyDecrease = () => {
-    // count > 1 && setCount(count - 1);
-  };
+    const {removeItem, qtyDecrease,qtyIncrease} = useContext(CartContext);
 
-  const qtyIncrease = () => {
-    // qty > count && setCount(count + 1);
-    // getQtySelect(count)
-  };
 
   return (
-    <div className="mt-5 w-[65%] m-auto pr-[140px]">
+    <div className="mt-5 pr-[140px]">
       <div className="flex justify-between">
         <div className="flex">
         <figure className="w-[5rem] h-[5rem] mr-4">
@@ -38,9 +30,9 @@ const CartItem = ({ id,image, name, clickColor, selectQty, price, stock }) => {
           <IndianPrice price={price} />
         </div>
         <div className="flex gap-3">
-          <FaMinus onClick={() => qtyDecrease} />
+          <FaMinus onClick={() => qtyDecrease(id)} />
           <p>{selectQty}</p>
-          <FaPlus onClick={() => qtyIncrease} />
+          <FaPlus onClick={() => qtyIncrease(id)} />
         </div>
         <div><IndianPrice price={price * selectQty}/></div>
         <div>
