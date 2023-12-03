@@ -21,12 +21,5 @@ const Products = () => {
     </div>
   );
 };
-{
-  /* <div className='w-[80%] m-auto mt-8'>
-<div className='grid grid-cols-6 gap-[20px]'>
- <div className='col-span-1 bg-gray-200 mr-4'> <FilterSection /> </div>                          
- <div className='grid col-span-5 gap-5'> <Sort /> <ProductList filterProducts = {filter_products}/> </div>                          
-</div>
-</div> */
-}
+
 export default Products;

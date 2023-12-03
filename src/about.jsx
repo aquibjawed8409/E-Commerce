@@ -1,6 +1,4 @@
-import React, { useContext } from 'react'
 import HeroSection from './components/HeroSection'
-import { AppContext } from './context/ProductContext'
 
 const About = () => {
 

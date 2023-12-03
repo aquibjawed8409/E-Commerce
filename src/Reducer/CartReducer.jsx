@@ -45,7 +45,7 @@ const CartReducer = (state, action) => {
              }
 
             return {
-                ... state,
+                ...state,
                 cart : [...state.cart, selectedCartProduct]
             }
         }
@@ -84,7 +84,7 @@ const CartReducer = (state, action) => {
                          decreaseValue = 1;
                     }
                     return {
-                        ... curElem,
+                        ...curElem,
                         selectQty : decreaseValue,
                     }
                 }else{

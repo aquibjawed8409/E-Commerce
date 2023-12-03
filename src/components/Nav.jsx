@@ -15,10 +15,12 @@ const Nav = () => {
         <NavLink to="/contact">Contact</NavLink>
         <button className="bg-[#3273dc] px-3 py-2 text-white">Login</button>
         <div className="relative">
+          <NavLink to="/cart">
           <FaShoppingCart className="text-[1.5rem] " />
           <span className="absolute flex items-center justify-center right-[-10px] top-[-10px] text-[12px] text-white bg-[#3273dc] rounded-[50%] w-[20px] h-[20px]">
             {total_items}
           </span>
+          </NavLink>
         </div>
       <div className="cursor-pointer hidden max-[480px]:block max-[480px]:text-[28px]">
         <CgMenu />

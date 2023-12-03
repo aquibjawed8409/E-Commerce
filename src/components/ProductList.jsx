@@ -1,5 +1,4 @@
 import React, { useContext } from 'react'
-import Card from './Card'
 import GridView from './GridView'
 import ListView from './ListView'
 import { FilterContext } from '../context/FilterContext'

@@ -9,6 +9,7 @@ const Contact = () => {
         width="100%"
         height="400"
         allowfullscreen=""
+        title = "title"
         loading="lazy"
         referrerpolicy="no-referrer-when-downgrade"
       ></iframe>

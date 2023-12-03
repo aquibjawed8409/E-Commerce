@@ -4,7 +4,7 @@ const FilterReducer = (state, action)=>{
 
             // For Price Range Input
             let priceArr = action.payload.map((curElem)=>curElem.price)
-            let maxPrice = Math.max(... priceArr)
+            let maxPrice = Math.max(...priceArr)
 
             return {
                 ...state,

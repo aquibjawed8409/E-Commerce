@@ -5,11 +5,19 @@ import reducer from "../Reducer/CartReducer"
 
  let getStorageData = () =>{
     let newCartData = localStorage.getItem("Ecom Cart");  // Data get in string form
-    if(newCartData == []){
+    const parsedData = JSON.parse(newCartData)            // Convert string data to Json Object
+    if(!Array.isArray(parsedData)){                        // Check is parsedData is an array or not if not then return empty array
         return [];
     }else{
-        return JSON.parse(newCartData)        // Convert string data to Json Object
+        return parsedData        
     }
+
+    // Old Code which set the storage value null 
+    // if(newCartData == []){
+    //     return []
+    // }else {
+    //     return JSON.parse(newCartData)
+    // }
  }
  const InitialState = {
     cart : getStorageData(),
