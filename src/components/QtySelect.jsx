@@ -1,16 +1,18 @@
 import React, { useState } from 'react'
 import { FaPlus, FaMinus } from "react-icons/fa";
-const QtySelect = ({qty}) => {
+const QtySelect = ({qty, getQtySelect}) => {
     const [count, setCount] = useState(1);
-
+    
     const qtyDecrease  =()=>{
-        count > 1 && setCount(count - 1)
+      count > 1 && setCount(count - 1);
     }
     
     const qtyIncrease  =()=>{
-        qty > count && setCount(count + 1)
+      qty > count && setCount(count + 1);
+      // getQtySelect(count)
     }
-  return (
+    getQtySelect(count)  // Pass the selected Qty to the parent i.e, Single Product and then pass it into the Add to Cart Functionality
+    return (
     <div className='flex gap-7 items-center'>
     Qty Selected : 
       <FaMinus onClick={() =>qtyDecrease()}/>

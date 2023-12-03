@@ -2,8 +2,8 @@ const FilterReducer = (state, action)=>{
     switch (action.type){
         case "LOAD_FILTER_PRODUCTS" : {
 
+            // For Price Range Input
             let priceArr = action.payload.map((curElem)=>curElem.price)
-            
             let maxPrice = Math.max(... priceArr)
 
             return {
@@ -93,6 +93,7 @@ const FilterReducer = (state, action)=>{
             let tempFilterProduct = [...all_products];
             // let tempFilterProduct = [...action.payload];
             const { text, category, company, color,price } = state.filters;
+            // console.log(text)
 
             // For Search Filter
             if (text) {

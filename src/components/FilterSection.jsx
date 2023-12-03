@@ -6,12 +6,13 @@ import IndianPrice from "../Helper/IndianPrice";
 const FilterSection = () => {
   const {
     updateFilterData,
-    filters: { text, color, minPrice, maxPrice, price },
-    all_products, clearFilter
+    filters: { color, minPrice, maxPrice, price, text } ={},
+    all_products,
+    clearFilter,
   } = useContext(FilterContext);
+  // console.log(text)
 
-  const [clickCategory, setClickcategory] = useState(null)
-
+  const [clickCategory, setClickcategory] = useState(null);
 
   // Get Unique Data Category wise
   const getUniqueData = (data, property) => {
@@ -53,8 +54,13 @@ const FilterSection = () => {
                 type="submit"
                 name="category"
                 value={elem}
-                onClick={()=>{updateFilterData({ target: { name: "category", value: elem } }); setClickcategory(elem)}}
-                style={{color : clickCategory === elem ? "blue": "" }}
+                onClick={() => {
+                  updateFilterData({
+                    target: { name: "category", value: elem },
+                  });
+                  setClickcategory(elem);
+                }}
+                style={{ color: clickCategory === elem ? "blue" : "" }}
               >
                 {elem}
               </button>
@@ -134,7 +140,10 @@ const FilterSection = () => {
       {/* Clear Filter */}
 
       <div className="mt-8 flex justify-center">
-        <button className="bg-[#3273dc] px-3 py-2 text-white" onClick={clearFilter}>
+        <button
+          className="bg-[#3273dc] px-3 py-2 text-white"
+          onClick={clearFilter}
+        >
           Clear Filter
         </button>
       </div>
@@ -143,82 +152,3 @@ const FilterSection = () => {
 };
 
 export default FilterSection;
-
-// import React, { useContext, useState } from "react";
-// import { FilterContext } from "../context/FilterContext";
-// import { TiTick } from "react-icons/ti";
-// import IndianPrice from "../Helper/IndianPrice";
-
-// const FilterSection = () => {
-//   const {
-//     updateFilterData,
-//     filters: { text, color, minPrice, maxPrice, price, category: selectedCategory },
-//     all_products,
-//     clearFilter
-//   } = useContext(FilterContext);
-
-//   const [clickColor, setClickColor] = useState(null);
-
-//   const getUniqueData = (data, property) => {
-//     let newVal = data.map((curElem) => {
-//       return curElem[property];
-//     });
-//     if (property === "colors") {
-//       return (newVal = ["All", ...new Set([].concat(...newVal))]);
-//     } else {
-//       return (newVal = ["All", ...new Set(newVal)]);
-//     }
-//   };
-
-//   const categoryData = getUniqueData(all_products, "category");
-//   const companyData = getUniqueData(all_products, "company");
-//   const colorData = getUniqueData(all_products, "colors");
-
-//   return (
-//     <div className="p-5">
-//       <form action="#" onSubmit={(e) => e.preventDefault()}>
-//         <input
-//           type="text"
-//           name="text"
-//           value={text}
-//           onChange={updateFilterData}
-//           placeholder="Search..."
-//           className="border-1px bg-gray-300 p-1 outline-1px border-[1px]"
-//         />
-//       </form>
-
-//       {/* Category Filter */}
-//       <div className="flex flex-col items-start">
-//         <h2 className="text-[1.3rem] text-bold my-3">Category</h2>
-//         <div className="flex flex-col gap-3">
-//           {categoryData.map((elem, i) => (
-//             <button
-//               key={i}
-//               type="submit"
-//               name="category"
-//               value={elem}
-//               onClick={() => {
-//                 updateFilterData({ target: { name: "category", value: elem } });
-//                 setClickColor(elem);
-//               }}
-//               style={{ textDecoration: selectedCategory === elem ? "underline" : "none" }}
-//             >
-//               {elem}
-//             </button>
-//           ))}
-//         </div>
-//       </div>
-
-//       {/* ... (rest of the code) */}
-
-//       {/* Clear Filter */}
-//       <div className="mt-8 flex justify-center">
-//         <button className="bg-[#3273dc] px-3 py-2 text-white" onClick={clearFilter}>
-//           Clear Filter
-//         </button>
-//       </div>
-//     </div>
-//   );
-// };
-
-// export default FilterSection;

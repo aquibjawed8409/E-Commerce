@@ -1,11 +1,12 @@
 import React, { useState } from 'react'
 import { TiTick } from "react-icons/ti";
 
-const Colors = ({color = []}) => {
+const Colors = ({color = [], getColorSelect}) => {
     const [clickColor, setClickColor] = useState(null)
     const getColor = (selectedcolor) =>{
         // console.log(selectedcolor)
         setClickColor(selectedcolor)
+        getColorSelect(selectedcolor)    // Pass the selected Color (Click Color) to the parent i.e, Single Product and then pass it into the Add to Cart Functionality
     }
    
  

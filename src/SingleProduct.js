@@ -1,4 +1,4 @@
-import React, { useContext } from "react";
+import React, { useContext, useState } from "react";
 import { useEffect } from "react";
 import { useParams } from "react-router-dom";
 import { AppContext } from "./context/ProductContext";
@@ -11,10 +11,15 @@ import Stars from "./components/Stars";
 import Colors from "./components/Colors";
 import QtySelect from "./components/QtySelect";
 import { NavLink } from "react-router-dom";
+import { CartContext } from "./context/CartContext";
 
 const singleUrl = `https://api.pujakaitem.com/api/products`;
 
 const SingleProduct = () => {
+  const [clickColor, setClickColor] = useState(null)
+  const [selectQty, setSelectQty] = useState(1)
+  
+  const {addToCart} = useContext(CartContext)
   const { id } = useParams();
   // console.log(id)
   const { getSingleProducts, isLoading, singleProduct } =
@@ -33,12 +38,24 @@ const SingleProduct = () => {
     image,
     colors
   } = singleProduct;
+
+  
   useEffect(() => {
     getSingleProducts(`${singleUrl}?id=${id}`);
   }, []);
 
   if(isLoading){
     return <div>... Loading</div>
+  }
+
+// Get the click color from Colors Component
+  const getClickColor = (color)=>{
+    setClickColor(color)
+  }
+
+  // Get the Qty from QtySelect Component
+  const getSelectQty = (qty)=>{
+    setSelectQty(qty)
   }
 
   return (
@@ -49,8 +66,10 @@ const SingleProduct = () => {
       </div>
 
       <div className="grid grid-cols-2 my-9 w-[70%] m-auto gap-8">
+
       {/* Image */}
         <ProductImage img={image} />
+
         {/* About product */}
         <div className="text-[16px]  flex flex-col gap-3">
           <h2 className="text-3xl">{name}</h2>
@@ -94,12 +113,16 @@ const SingleProduct = () => {
             Brand : <b>{company}</b>
           </p>
           <hr />
+
         {/* Colors Selection */}
-        <p className="flex items-center gap-3 ">Color Available : {stock > 0 ? <Colors color = {colors}/> : "Stock not Available"}  </p>
+        <p className="flex items-center gap-3 ">Color Available : {stock > 0 ? <Colors color = {colors} getColorSelect = {getClickColor}/> : "Stock not Available" } 
+         </p>
+
         {/* Qty Selection */}
-        <QtySelect qty = {stock}/>
+        <QtySelect qty = {stock} getQtySelect = {getSelectQty}/>
+
         {/* Add to Cart Button */}
-        <NavLink to="/cart">
+        <NavLink to="/cart" onClick={()=>{addToCart(id,singleProduct,clickColor, selectQty)}}>
         <button className="bg-[#3273dc] px-3 py-2 text-white">Add to Cart</button>
         </NavLink>
         </div>
