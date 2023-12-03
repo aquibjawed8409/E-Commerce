@@ -6,7 +6,7 @@ const FeaturedProduct = () => {
     const {isLoading, Featureproducts} = useContext(AppContext);
 
     if(isLoading) {
-        return <div>...Loading</div>
+        return <div className='w-[70%] m-auto'>...Loading</div>
     }
   return (
     <>

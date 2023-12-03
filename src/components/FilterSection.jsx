@@ -16,6 +16,7 @@ const FilterSection = () => {
 
   // Get Unique Data Category wise
   const getUniqueData = (data, property) => {
+    console.log(data)
     let newVal = data.map((curElem) => {
       return curElem[property];
     });

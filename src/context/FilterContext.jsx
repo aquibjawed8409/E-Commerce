@@ -57,7 +57,7 @@ const FilterProvider = ({children}) =>{
 
     useEffect(()=>{
         dispatch({type: "SORTING_PRODUCTS", payload : products})
-        dispatch({type: "   "})
+        dispatch({type: "UPDATE_FILTER_PRODUCTS"})
     }, [products, state.sort_value, state.filters])
 
     useEffect(()=>{
