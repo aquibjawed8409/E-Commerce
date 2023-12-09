@@ -1,15 +1,17 @@
 const ProductReducer = (state, action)=>{
     switch (action.type) {
+
         case "SET_LOADING":
            return {
             ...state,
             isLoading: true,
            };
             
-           case "PRODUCT_API_DATA":
+        case "PRODUCT_API_DATA":
             const featuredData = action.payLoad.filter((elem)=>{
                 return elem.featured === true;
             })
+            console.log(featuredData)
             return {
                 ...state,
                 isLoading : false,
@@ -32,15 +34,15 @@ const ProductReducer = (state, action)=>{
         case "SINGLEPRODUCT_API_DATA":
             return {
                 ...state,
-                isSingleLoading : false,
-                isSingleError : false,
+                isLoading : false,
+                isError : false,
                 singleProduct : action.payLoad,
             }
-            case "SINGLE_API_ERROR":
+        case "SINGLE_API_ERROR":
             return {
                 ...state,
-                isSingleLoading : false,
-                isSingleError : true
+                isLoading : false,
+                isError : true
             } 
         default:
             return {

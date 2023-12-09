@@ -11,13 +11,13 @@ const ProductList = () => {
       return (
         <GridView filterProducts = {filter_products}/>
       ) 
-    }
-
-    if(grid_view === false ){
+    }else {
       return (
         <ListView filterProducts = {filter_products}/>
       ) 
     }
+
+    
     
 }
 

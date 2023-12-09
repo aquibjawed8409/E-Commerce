@@ -8,7 +8,7 @@ const InitialState = {
     filter_products : [],
     all_products : [],
     grid_view : true,
-    sort_value : "lowest",  // By Default lowest
+    sort_value : "a-z",  // By Default lowest
     filters : {
         text : "",
         category : "All",
@@ -20,15 +20,12 @@ const InitialState = {
     }
 }
 const FilterProvider = ({children}) =>{
+    // Get all products from Product Context
     const {products} = useContext(AppContext)
-    // console.log(products)
 
     const [state, dispatch] = useReducer(reducer, InitialState);
 
-    // Clear Filter 
-    const clearFilter = () =>{
-        dispatch({type : "CLEAR_FILTER_DATA"})
-    }
+ 
  
     // Set the Grid View Mode
     const setGridView = () =>{ 
@@ -51,14 +48,24 @@ const FilterProvider = ({children}) =>{
         // alert("click" + e.target.value)
         let name = e.target.name;
         let value = e.target.value;
+        console.log(name)
         dispatch({type: "UPDATE_FILTER_DATA", payload : {name, value}}); 
     }
-  
 
-    useEffect(()=>{
-        dispatch({type: "SORTING_PRODUCTS", payload : products})
-        dispatch({type: "UPDATE_FILTER_PRODUCTS"})
-    }, [products, state.sort_value, state.filters])
+    // Clear Filter 
+    const clearFilter = () =>{
+        dispatch({type : "CLEAR_FILTER_DATA"})
+    }
+  
+    useEffect(() => {
+        dispatch({ type: "SORTING_PRODUCTS", payload: products });
+    }, [state.sort_value, state.filters, products]);  // Trigger when sort value, filters, or products change
+    
+
+    useEffect(() => {
+        dispatch({ type: "UPDATE_FILTER_PRODUCTS" });
+    }, [state.filters]);  // Trigger when filters are updated
+    
 
     useEffect(()=>{
         dispatch({type : "LOAD_FILTER_PRODUCTS", payload : products})

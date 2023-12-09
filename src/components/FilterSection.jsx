@@ -2,6 +2,8 @@ import React, { useContext, useState } from "react";
 import { FilterContext } from "../context/FilterContext";
 import { TiTick } from "react-icons/ti";
 import IndianPrice from "../Helper/IndianPrice";
+import { CgMenu, CgClose } from "react-icons/cg";
+
 
 const FilterSection = () => {
   const {
@@ -14,9 +16,9 @@ const FilterSection = () => {
 
   const [clickCategory, setClickcategory] = useState(null);
 
+
   // Get Unique Data Category wise
   const getUniqueData = (data, property) => {
-    console.log(data)
     let newVal = data.map((curElem) => {
       return curElem[property];
     });
@@ -33,7 +35,10 @@ const FilterSection = () => {
   const colorData = getUniqueData(all_products, "colors");
 
   return (
-    <div className="p-5">
+    <div className="relative">
+      <div className="p-5 hidden md:block">
+        {/* <CgClose className="hidden"/> */}
+    <CgMenu className="absolute top-0 right-[-22px] text-2xl"/>
       <form action="#" onSubmit={(e) => e.preventDefault()}>
         <input
           type="text"
@@ -122,7 +127,7 @@ const FilterSection = () => {
       </div>
       {/* Price Range Filter */}
       <div>
-        <h2 className="text-[1.3rem] text-bold my-3">Colors</h2>
+        <h2 className="text-[1.3rem] text-bold my-3">Price</h2>
         <div>
           <p>
             <IndianPrice price={price} />
@@ -148,6 +153,7 @@ const FilterSection = () => {
           Clear Filter
         </button>
       </div>
+    </div>
     </div>
   );
 };

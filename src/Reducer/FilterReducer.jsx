@@ -8,8 +8,8 @@ const FilterReducer = (state, action)=>{
 
             return {
                 ...state,
-                filter_products : [...action.payload],   // Copy of Original
-                all_products : [...action.payload],   // Copy of Original
+                filter_products : [...action.payload],   // Copy of Original products
+                all_products : [...action.payload],   // Copy of Original products
                 filters : {
                     ...state.filters,
                     price : maxPrice,
@@ -17,6 +17,7 @@ const FilterReducer = (state, action)=>{
                 }
             }
         }
+        
         case "SET_GRID_VIEW" : {
             return {
                 ...state,
@@ -54,6 +55,7 @@ const FilterReducer = (state, action)=>{
                     return b.price - a.price;
                 }
                 newSortData = tempSortProduct.sort(sortingProducts)
+                console.log(newSortData)
             }
 
             if(state.sort_value === "a-z"){
@@ -82,7 +84,7 @@ const FilterReducer = (state, action)=>{
                 ...state,
               filters  :{
                 ...state.filters,
-                [name] : value,       // At initial state it will put the value of text empty to the value of user input
+                [name] : value,       // At initial state inplace of name it will be either filter which section (i.e, text, category, company or more) and in place of value put the value of respective filter section. 
                 // [action.payload.name] : action.payload.value,
               }
             }

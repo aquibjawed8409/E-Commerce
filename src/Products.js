@@ -8,7 +8,7 @@ const Products = () => {
   const { filter_products } = useContext(FilterContext);
   // console.log(filter_products)
   return (
-    <div className="w-[80%] m-auto mt-8">
+    <div className="w-[100%] m-auto mt-8 md:w-[90%]" >
       <div className="flex">
         <div className="bg-gray-200 mr-4">
           <FilterSection />
