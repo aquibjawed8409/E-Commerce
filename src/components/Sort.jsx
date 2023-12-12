@@ -3,7 +3,7 @@ import { IoGrid } from "react-icons/io5";
 import { FaList } from "react-icons/fa";
 import { FilterContext } from "../context/FilterContext";
 
-const Sort = () => {
+const Sort = ({ toggleFilter }) => {
   const {
     filter_products,
     grid_view,
@@ -16,7 +16,7 @@ const Sort = () => {
   return (
     <div className="flex flex-col gap-3">
       {/* Grid & List View */}
-      <div className="flex justify-between flex-wrap px-3 min-w-[23rem] sm:min-w-[35rem] md:min-w-[27rem] ">
+      <div className="flex justify-between gap-5 items-center flex-wrap px-3 min-w-[20rem] sm:min-w-[35rem] md:min-w-[27rem] ">
         <div className="flex gap-3">
           <button>
             <IoGrid
@@ -35,12 +35,20 @@ const Sort = () => {
             className="p-1 text-2xl"
           />
         </div>
+
         {/* Total Filter Qty */}
-        <div>
+        <div className="ml-5">
           <p>{filter_products.length} Total Products</p>
         </div>
-        <div className="border-[2px]">
-          {/* Dropdown */}
+
+          {/* Filter Button for Mobile */}
+        <div className="flex md:hidden">
+          <button className="bg-gray-200 px-4 py-1 rounded shadow" onClick = {toggleFilter}>FILTERS</button>
+        </div>
+
+
+        {/* Dropdown */}
+        <div className="border-[2px] hidden md:block">
           <form action="#">
             <label htmlFor="sort">
               <select name="sort" id="sort" onClick={sorting}>
@@ -62,7 +70,7 @@ const Sort = () => {
             value={text}
             onChange={updateFilterData}
             placeholder="Search..."
-            className="border-1px bg-gray-300 p-1 outline-1px border-[1px] min-w-[250px]"
+            className="border-1px bg-gray-300 p-1 outline-1px border-[1px] min-w-[250px] bg-transparent shadow rounded "
           />
         </form>
       </div>

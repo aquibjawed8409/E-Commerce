@@ -2,7 +2,7 @@ import React, { useContext, useState } from "react";
 import { FilterContext } from "../context/FilterContext";
 import { TiTick } from "react-icons/ti";
 import IndianPrice from "../Helper/IndianPrice";
-import { FaChevronCircleRight, FaChevronCircleLeft } from "react-icons/fa";
+import Sort from "./Sort";
 
 const FilterSection = () => {
   const {
@@ -10,6 +10,7 @@ const FilterSection = () => {
     filters: { color, minPrice, maxPrice, price, text } = {},
     all_products,
     clearFilter,
+    sorting,
   } = useContext(FilterContext);
 
   const [clickCategory, setClickcategory] = useState(null);
@@ -33,36 +34,29 @@ const FilterSection = () => {
   const colorData = getUniqueData(all_products, "colors");
 
   // Toggle Filter Section in Mobile View
-  function toggle() {
+  function openFilter() {
     setHideFilter(!hideFilter);
   }
-  // Hide Filter Section
-  const closeFilter = () => {
-    setHideFilter(false);
+
+  const toggleFilter = () => {
+    setHideFilter(!hideFilter);
   };
 
   return (
-    <>
-      <div className="absolute top-[15%] z-[100] text-2xl md:hidden">
-        <FaChevronCircleRight
-          className={`${hideFilter ? "block" : "hidden"}`}
-          onClick={toggle}
-        />
-        <FaChevronCircleLeft
-          className={`${hideFilter ? "hidden" : "block"}`}
-          onClick={toggle}
-        />
+    <div className="flex flex-col">
+      <div className="block md:hidden">
+        <Sort toggleFilter={toggleFilter} />
       </div>
+
       <div
         className={`md:block ${
           hideFilter ? "hidden" : "block"
-        } transition ease-in-out duration-1000 absolute md:static z-50 bg-gray-200 top-[15%]`}
+        } transition ease-in-out duration-1000 absolute md:static z-50 bg-gray-200 top-0 w-full flex flex-col justify-start`}
       >
         <div className="p-5 md:block flex flex-col items-center">
           <form
             action="#"
             onSubmit={(e) => e.preventDefault()}
-            className={`${hideFilter ? "block" : "hidden"}`}
           >
             <input
               type="text"
@@ -89,7 +83,7 @@ const FilterSection = () => {
                         target: { name: "category", value: elem },
                       });
                       setClickcategory(elem);
-                      closeFilter();
+                      // closeFilter();
                     }}
                     style={{ color: clickCategory === elem ? "blue" : "" }}
                   >
@@ -170,19 +164,41 @@ const FilterSection = () => {
             </div>
           </div>
 
+          <div className="border-[2px]  md:block">
+            {/* Dropdown */}
+            <form action="#">
+              <label htmlFor="sort">
+                <select name="sort" id="sort" onClick={sorting}>
+                  <option value="lowest">Price (Lowest)</option>
+                  <option value="highest">Price (Highest)</option>
+                  <option value="a-z">Text (a-z)</option>
+                  <option value="z-a">Text (z-a)</option>
+                </select>
+              </label>
+            </form>
+          </div>
+
           {/* Clear Filter */}
 
-          <div className="mt-8 flex justify-center">
+          <div className="mt-8 flex  gap-3 justify-center">
             <button
               className="bg-[#3273dc] px-3 py-2 text-white"
               onClick={clearFilter}
             >
               Clear Filter
             </button>
+
+            {/* Close Button for Mobile */}
+            <button
+              className={`bg-[#3273dc] px-3 py-2 text-white block md:hidden`}
+              onClick={openFilter}
+            >
+              Close
+            </button>
           </div>
         </div>
       </div>
-    </>
+    </div>
   );
 };
 
