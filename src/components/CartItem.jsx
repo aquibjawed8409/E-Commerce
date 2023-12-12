@@ -28,9 +28,9 @@ const CartItem = ({ id, image, name, clickColor, selectQty, price }) => {
           <IndianPrice price={price} />
         </div>
         <div className="flex gap-3">
-          <FaMinus onClick={() => qtyDecrease(id)} />
+          <FaMinus onClick={() => qtyDecrease(id)} className="mt-1"/>
           <p>{selectQty}</p>
-          <FaPlus onClick={() => qtyIncrease(id)} />
+          <FaPlus onClick={() => qtyIncrease(id)} className="mt-1"/>
         </div>
         <div>
           <IndianPrice price={price * selectQty} />

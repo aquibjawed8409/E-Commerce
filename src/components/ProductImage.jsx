@@ -15,8 +15,8 @@ const ProductImage = ({ img = [{ url: "" }] }) => {
   }
 
   return (
-    <div className="flex flex-col gap-2 md:flex-row items-center">
-      <div className="flex md:flex-col gap-2">
+    <div className="flex flex-col items-center justify-center gap-2 md:flex-row ">
+      <div className="flex items-center flex-wrap justify-center md:flex-col gap-2">
         {img.map((elem, i) => {
           return (
             <figure key={i} className="w-[5rem] md:w-[10rem]">
@@ -34,7 +34,7 @@ const ProductImage = ({ img = [{ url: "" }] }) => {
         <img
           src={clickImage.url}
           alt={clickImage.filename}
-          className="h-[15rem]"
+          className="w-[30rem] h-[15rem] p-2"
         />
       </div>
     </div>

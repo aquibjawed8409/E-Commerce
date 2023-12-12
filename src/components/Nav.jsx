@@ -9,68 +9,79 @@ const Nav = () => {
 
   const [menuOpen, setMenuOpen] = useState(false);
 
+  // Toggle for Menu
   const toggleMenu = () => {
     setMenuOpen(!menuOpen);
   };
+
+  // Hide after click pages
+  const closeMenu = () => {
+    setMenuOpen(false);
+  };
+
   return (
     <>
-      <div className={`relative ${menuOpen? "h-screen" : ""} flex justify-center` }>
-        <div className={`${menuOpen? "block" : "hidden"} absolute md:relative flex flex-col gap-10 justify-center items-center md:block`}>
-        <NavLink to="/">Home</NavLink> 
-        <NavLink to="/about">About</NavLink>
-        <NavLink to="/products">Product</NavLink>
-        <NavLink to="/contact">Contact</NavLink>
-        <div className="relative items-center flex justify-center">
-          <NavLink to="/cart">
-            <FaShoppingCart className="text-[1.5rem] " />
-            <span className="absolute flex items-center justify-center right-[-10px] top-[-10px] text-white bg-[#3273dc] w-[20px] h-[20px] text-[17px] rounded-[50%]">{total_items}</span>
+      <div className="flex justify-between items-center p-4">
+        <div>
+          <NavLink to="/">
+            <img src="./images/logo.png" alt="" className="h-[2.5rem]" />
           </NavLink>
         </div>
+        <div>
+          <ul
+            className={`flex flex-col justify-center items-center md:flex md:flex-row gap-5 md:gap-3 md:text-xl absolute md:static z-[1] md:z-100 max-md:bg-slate-300 w-full left-0 md:opacity-100 py-5 md:py-0  ${
+              menuOpen ? "top-[70px]" : "top-[-100%]"
+            } } `}
+          >
+            <li
+              className="hover:text-[#3273dc] trasition-1000"
+              onClick={closeMenu}
+            >
+              <NavLink to="/">Home</NavLink>
+            </li>
+            <li
+              className="hover:text-[#3273dc] trasition-1000"
+              onClick={closeMenu}
+            >
+              <NavLink to="/about">About</NavLink>
+            </li>
+            <li
+              className="hover:text-[#3273dc] trasition-1000"
+              onClick={closeMenu}
+            >
+              <NavLink to="/products">Product</NavLink>
+            </li>
+            <li
+              className="hover:text-[#3273dc] trasition-1000"
+              onClick={closeMenu}
+            >
+              <NavLink to="/contact">Contact</NavLink>
+            </li>
+            <li
+              className="hover:text-[#3273dc] trasition-1000"
+              onClick={closeMenu}
+            >
+              <NavLink to="/cart" className="flex relative">
+                <FaShoppingCart className="text-[1.5rem] relative" />
+                <span className="absolute top-[-10px] right-[-10px] md:top-[-10px] md:right-[-10px] bg-blue-500 text-white rounded-[50%] w-5 h-5 md:text-[15px] flex items-center justify-center">
+                  {total_items}
+                </span>
+              </NavLink>
+            </li>
+          </ul>
+        </div>
+
+        <div className="flex md:hidden">
+          <CgMenu
+            className={`text-3xl ${menuOpen ? "hidden" : "block"}`}
+            onClick={toggleMenu}
+          />
+          <CgClose
+            className={`text-3xl ${menuOpen ? "block" : "hidden"}`}
+            onClick={toggleMenu}
+          />
         </div>
       </div>
-       <div className="absolute top-3 right-3 md:hidden">
-       <div className={`block ${menuOpen ? "hidden" : "block"} text-3xl`} onClick={toggleMenu}>
-          <CgMenu />
-        </div>
-        <div className={`block ${menuOpen ? "block" : "hidden"} text-3xl`} onClick={toggleMenu}>
-          <CgClose />
-        </div>
-       </div> 
-
-      {/* <div
-        className="flex justify-between relative"
-      >
-        <div
-          className="absolute flex flex-col gap-10 justify-center items-center bg-white top-[-92px] left-[-24px]  w-screen"
-        >
-          <NavLink to="/">Home</NavLink>
-          <NavLink to="/about">About</NavLink>
-          <NavLink to="/products">Product</NavLink>
-          <NavLink to="/contact">Contact</NavLink>
-          <div className="relative items-center flex justify-center">
-            <NavLink to="/cart">
-              <FaShoppingCart className="text-[1.5rem] " />
-              <span className="absolute flex items-center justify-center right-[-10px] top-[-10px] text-white bg-[#3273dc] w-[20px] h-[20px] text-[17px] rounded-[50%]">
-                {total_items}
-              </span>
-            </NavLink>
-          </div>
-        </div>
-        <div className="absolute top-[-75px] right-0 md:hidden">
-          <div
-            className={`block ${menuOpen ? "hidden" : "block"} text-3xl`}
-            onClick={toggleMenu}
-          >
-            <CgMenu />
-          </div>
-          <div
-            className={`block ${menuOpen ? "block" : "hidden"} text-3xl`}
-            onClick={toggleMenu}
-          >
-            <CgClose />
-          </div>
-        </div>
-      </div> */}
     </>
   );
 };

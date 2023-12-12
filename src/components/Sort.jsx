@@ -2,7 +2,6 @@ import React, { useContext } from "react";
 import { IoGrid } from "react-icons/io5";
 import { FaList } from "react-icons/fa";
 import { FilterContext } from "../context/FilterContext";
-import { CgMenu, CgClose } from "react-icons/cg";
 
 const Sort = () => {
   const {
@@ -14,7 +13,6 @@ const Sort = () => {
     updateFilterData,
     filters: { text },
   } = useContext(FilterContext);
-  // min-w-[23rem] sm:min-w-[35rem] md:min-w-[55rem]
   return (
     <div className="flex flex-col gap-3">
       {/* Grid & List View */}
@@ -57,10 +55,6 @@ const Sort = () => {
       </div>
 
       <div className="m-auto flex md:hidden">
-        {/* <div className="absolute left-[0px] top-[50px] md:hidden">
-          <CgMenu className="" />
-        </div> */}
-
         <form action="#" onSubmit={(e) => e.preventDefault()} className="">
           <input
             type="text"
@@ -75,5 +69,4 @@ const Sort = () => {
     </div>
   );
 };
-// flex justify-between min-w-[800px]
 export default Sort;

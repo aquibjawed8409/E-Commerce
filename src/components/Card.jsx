@@ -11,7 +11,7 @@ const Card = ({ id, name, image, price, category }) => {
             {category}
           </figcaption>
         </figure>
-        <div className="flex justify-between my-3 text-1xl flex items-center flex-col sm:flex-row">
+        <div className="flex justify-between my-3 text-1xl items-center flex-col sm:flex-row">
           <p>{name}</p>
           <p>
             <IndianPrice price={price} />

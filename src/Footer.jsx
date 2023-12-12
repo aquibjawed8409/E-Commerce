@@ -31,7 +31,7 @@ const fOOTER = () => {
             <input
               className="p-2 mb-4"
               type="email"
-              placeholder="EMail"
+              placeholder="Email"
               required
             />
             <button className="bg-[#3273dc] px-3 py-2 text-white w-fit">
@@ -61,7 +61,7 @@ const fOOTER = () => {
         {/* Bottom Footer */}
 
         <hr className="text-white" />
-        <div className="w-[90%] m-auto flex flex-col justify-center items-center justify-between py-3 gap-4 sm:flex-row">
+        <div className="w-[90%] m-auto flex flex-col justify-center items-center py-3 gap-4 sm:flex-row">
           <p>@2023 Aquib Jawed | All Right Reserved</p>
           <div className="flex gap-5 text-[14px]">
             <p>PRIVACY POLICY</p>

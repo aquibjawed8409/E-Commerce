@@ -48,7 +48,6 @@ const FilterProvider = ({children}) =>{
         // alert("click" + e.target.value)
         let name = e.target.name;
         let value = e.target.value;
-        console.log(name)
         dispatch({type: "UPDATE_FILTER_DATA", payload : {name, value}}); 
     }
 

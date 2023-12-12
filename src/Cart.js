@@ -24,7 +24,7 @@ const Cart = () => {
   return (
     <>
       <div className="mt-8 m-auto">
-        <div className="flex justify-around ml-10 text-[14px] md:text-[18px] font-bold items-center justify-center">
+        <div className="flex justify-around ml-10 text-[14px] md:text-[18px] font-bold items-center">
           <p className="mr-[85px]">ITEM</p>
           <p className="hidden md:block">PRICE</p>
           <p className="mr-11 md:mx-12">QTY</p>
@@ -77,11 +77,4 @@ const Cart = () => {
   );
 };
 
-{
-  /* <p className="px-20">ITEM</p>
-<p className="px-[90px]">PRICE</p>
-<p className="px-12">QTY</p>
-<p className="px-20">SUBTOTAL</p>
-<p>REMOVE</p> */
-}
 export default Cart;

@@ -13,9 +13,7 @@ const Colors = ({color = [], getColorSelect}) => {
   return (
     <>
      <span className='flex items-center'>
-     
      {
-        
         color.map((elem,i)=>{
             return <button key={i} className= 'bg-[blue] rounded-[50%] w-6 h-6 mr-2 text-white' style = {{backgroundColor: elem}} onClick={()=>{getColor(elem)}}>{clickColor === elem && <TiTick className='ml-1'/>}</button>
         })

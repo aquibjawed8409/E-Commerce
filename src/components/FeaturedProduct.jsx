@@ -11,7 +11,7 @@ const FeaturedProduct = () => {
   return (
     <>
       <div className="bg-[rgb(230,230,250)] py-9 my-9 flex ">
-        <div className="w-[70%] m-auto flex flex-col items-center w-fit">
+        <div className="w-[70%] m-auto flex flex-col items-center">
           <p className="text-gray-500 mb-[-8px]">CHECK NOW</p>
           <h2 className="text-2xl font-bold mb-3 md:text-3xl">
             Our Feature Services

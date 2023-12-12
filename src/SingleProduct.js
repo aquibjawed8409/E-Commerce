@@ -21,10 +21,8 @@ const SingleProduct = () => {
 
   const { addToCart } = useContext(CartContext);
   const { id } = useParams();
-  // console.log(id)
   const { getSingleProducts, isLoading, singleProduct } =
     useContext(AppContext);
-  // console.log(singleProduct)
 
   const {
     name,
@@ -58,18 +56,20 @@ const SingleProduct = () => {
   };
 
   return (
-    <>
+    <div className="">
       <div className="bg-[rgb(211,211,211)] capitalize text-2xl py-2 px-3">
         {/* Page Navigation */}
         <PageNavigation /> / {name}
       </div>
 
-      <div className="grid md:grid-cols-2 my-9 w-[70%] m-auto gap-8">
+      <div className="grid md:grid-cols-2 my-9 w-[100%] md:w-[95%] lg:w-[75%] m-auto gap-8">
         {/* Image */}
-        <div><ProductImage img={image} /></div>
+        <div>
+          <ProductImage img={image} />
+        </div>
 
         {/* About product */}
-        <div className="text-[16px]  flex flex-col gap-3">
+        <div className="text-[16px]  flex flex-col gap-3 px-3">
           <h2 className="text-3xl">{name}</h2>
           <Stars stars={stars} reviews={reviews} />
           <p>
@@ -86,7 +86,7 @@ const SingleProduct = () => {
             </b>
           </p>
           <p>{description}</p>
-          <div className="grid grid-cols-4 gap-3 ">
+          <div className="flex gap-3">
             <div className="flex items-center text-center gap-2 flex-col">
               <TbTruckDelivery /> <p>Free Delivery</p>
             </div>
@@ -138,7 +138,7 @@ const SingleProduct = () => {
           </NavLink>
         </div>
       </div>
-    </>
+    </div>
   );
 };
 
