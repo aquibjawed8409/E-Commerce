@@ -19,8 +19,8 @@ const FeaturedProduct = () => {
           <div className="grid grid-cols-1 mt-5 m-auto w-[90%] gap-8 sm:grid-cols-2 md:grid-cols-3">
             {Featureproducts.map((elem, i) => {
               return (
-                <div>
-                  <Card key={i} {...elem} />
+                <div key={elem.id}>
+                  <Card  {...elem} />
                 </div>
               );
             })}
