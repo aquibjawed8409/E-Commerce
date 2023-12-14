@@ -164,7 +164,7 @@ const FilterSection = () => {
             </div>
           </div>
 
-          <div className="border-[2px]  md:block">
+          <div className="border-[2px]  md:hidden">
             {/* Dropdown */}
             <form action="#">
               <label htmlFor="sort">
