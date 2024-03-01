@@ -5,7 +5,7 @@ const CartContext = createContext();
 
 let getStorageData = () => {
   let newCartData = localStorage.getItem("Ecom Cart"); // Data get in string form
-  const parsedData = JSON.parse(newCartData); // Convert string data to Json Object
+  const parsedData = JSON.parse(newCartData); // Convert string data to JS Object
   if (!Array.isArray(parsedData)) {
     // Check is parsedData is an array or not if not then return empty array
     return [];
@@ -54,7 +54,7 @@ const CartProvider = ({ children }) => {
   useEffect(() => {
     dispatch({ type: "NAV_CART_QTY" });
     dispatch({ type: "CART_TOTAL_AMOUNT" });
-    localStorage.setItem("Ecom Cart", JSON.stringify(state.cart)); // Local Storage set only string values, so we use JSON.stringify
+    localStorage.setItem("Ecom Cart", JSON.stringify(state.cart)); // Local Storage set only string values, we convert js object to string hence we use JSON.stringify
   }, [state.cart]);
 
   return (

@@ -24,7 +24,8 @@ const Nav = () => {
       <div className="flex justify-between items-center p-4 min-w-[23rem]">
         <div>
           <NavLink to="/">
-            <img src="./images/logo.png" alt="" className="h-[2.5rem]" />
+            {/* <img src="./images/logo.png" alt="" className="h-[2.5rem]" /> */}
+            <h2 className="text-2xl font-bold text-[#3273dc]">Genshop</h2>
           </NavLink>
         </div>
         <div className="z-[100]">
